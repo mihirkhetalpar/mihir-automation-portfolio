@@ -7,11 +7,8 @@ export function ContactSection() {
     <Section id="contact" className="text-center">
       <div className="rounded-lg border-2 border-primary/20 bg-card/50 p-8 backdrop-blur-sm md:p-12">
         <h2 className="font-headline text-3xl font-bold tracking-tight text-primary text-glow md:text-4xl">
-          Ready to Automate Your Enterprise?
+          Ready to see how AI-powered automation can transform IT operations?
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-          Let's discuss how AI-powered automation can transform your business processes. Book a free, no-obligation consultation today.
-        </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.8)] transition-shadow">
             <a href="mailto:mihir.khetalpar.dev@gmail.com?subject=Free%20Automation%20Consultation">

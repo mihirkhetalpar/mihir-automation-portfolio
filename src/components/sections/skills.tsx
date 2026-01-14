@@ -1,30 +1,29 @@
-import { CopilotIcon } from "../icons/copilot";
 import { GlowingCard } from "../shared/GlowingCard";
 import { Section } from "../shared/Section";
 import { SectionTitle } from "../shared/SectionTitle";
 import { CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Azure, Database, BrainCircuit, Code, Terminal, Power } from 'lucide-react';
+import { Bot, BrainCircuit, Code, Database, Power } from 'lucide-react';
 
 const skillCategories = [
   {
-    title: "Automation & RPA",
+    title: "Power Platform",
     icon: <Power className="h-6 w-6 text-primary" />,
-    skills: ["Power Automate", "UiPath", "Microsoft Power Platform"],
+    skills: ["Power Automate", "Power Automate Desktop", "Copilot Studio", "Power Apps (Basic)"],
   },
   {
-    title: "AI & ML",
-    icon: <BrainCircuit className="h-6 w-6 text-primary" />,
-    skills: ["Copilot Studio", "Generative AI", "Azure AI", "AI Builder"],
+    title: "AI & Automation",
+    icon: <Bot className="h-6 w-6 text-primary" />,
+    skills: ["Generative AI", "Agentic AI", "Knowledge-based AI routing"],
   },
   {
-    title: "Data & Analytics",
+    title: "Data & Systems",
     icon: <Database className="h-6 w-6 text-primary" />,
-    skills: ["Power BI", "SQL", "Dataverse", "Microsoft Fabric"],
+    skills: ["Power BI", "SQL", "APIs"],
   },
   {
-    title: "Scripting & Languages",
+    title: "Scripting",
     icon: <Code className="h-6 w-6 text-primary" />,
-    skills: ["PowerShell", "Python", "C#", "JavaScript"],
+    skills: ["PowerShell"],
   },
 ];
 
@@ -34,9 +33,6 @@ export function SkillsSection() {
     <Section id="skills">
       <div className="flex flex-col items-center gap-8">
         <SectionTitle>Skills & Technologies</SectionTitle>
-        <p className="max-w-2xl text-center text-lg text-muted-foreground">
-          Proficient in a wide array of technologies for building production-grade automation systems.
-        </p>
         <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {skillCategories.map((category) => (
             <GlowingCard key={category.title}>

@@ -12,7 +12,7 @@ export function HeroSection() {
           AI Automation Architect
         </p>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground md:text-xl">
-          Building production-grade, AI-powered automation solutions for the modern enterprise.
+          Building production-grade GenAI and Power Platform automations for enterprise IT operations.
         </p>
         <div className="mt-8 flex justify-center gap-4">
           <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 transition-shadow hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.8)]">
