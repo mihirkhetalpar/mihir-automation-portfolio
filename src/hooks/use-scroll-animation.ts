@@ -13,47 +13,49 @@ export function useScrollAnimation(
   const handleScroll = useCallback(() => {
     if (!ref.current) return;
 
-    const { top, height } = ref.current.getBoundingClientRect();
+    const { top, bottom, height } = ref.current.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
 
-    // Determine when the element is within the "active" zone of the viewport
-    // Active zone is from 80% from top to 20% from bottom
-    const start = viewportHeight * 0.8;
-    const end = viewportHeight * 0.2;
+    // Check if any part of the element is visible
+    const isVisible = top < viewportHeight && bottom > 0;
 
-    let progress = 1;
-    if (top > start) {
-      progress = 1; // Element is below the viewport
-    } else if (top < end - height) {
-      progress = -1; // Element is above the viewport
+    if (isVisible) {
+      // If the element is visible, it should be fully opaque and in its final position.
+      setStyle({
+        opacity: 1,
+        transform: 'translateY(0) translateX(0)',
+        transition: 'transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)',
+        willChange: 'transform, opacity',
+      });
     } else {
-      // Element is in view, calculate its progress
-      progress = (top - start) / (end - height - start);
-      progress = Math.max(-1, Math.min(1, 1 - progress * 2));
-    }
+      // Element is completely out of view. Determine if it's above or below.
+      const isAbove = bottom < 0; // The bottom of the element is above the top of the viewport.
+      
+      let transform;
+      const verticalOffset = '20px';
+      const horizontalOffset = '30px';
 
-    let transform = '';
-    const opacity = 1 - Math.abs(progress);
+      switch (animationType) {
+        case 'fadeInUp':
+          transform = `translateY(${isAbove ? `-${verticalOffset}` : verticalOffset})`;
+          break;
+        case 'slideInFromLeft':
+          transform = `translateX(${isAbove ? `-${horizontalOffset}` : `-${horizontalOffset}`})`;
+          break;
+        case 'slideInFromRight':
+          transform = `translateX(${isAbove ? horizontalOffset : horizontalOffset})`;
+          break;
+        default:
+          transform = 'none';
+      }
 
-    switch (animationType) {
-      case 'fadeInUp':
-        transform = `translateY(${-progress * 50}px)`;
-        break;
-      case 'slideInFromLeft':
-        transform = `translateX(${-progress * 100}px)`;
-        break;
-      case 'slideInFromRight':
-        transform = `translateX(${progress * 100}px)`;
-        break;
+      setStyle({
+        opacity: 0,
+        transform,
+        transition: 'transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)',
+        willChange: 'transform, opacity',
+      });
     }
-    
-    setStyle({
-      transform,
-      opacity,
-      transition: 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
-      willChange: 'transform, opacity',
-      visibility: opacity > 0 ? 'visible' : 'hidden',
-    });
   }, [ref, animationType]);
 
   useEffect(() => {
