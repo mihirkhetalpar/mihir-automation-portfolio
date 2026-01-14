@@ -16,11 +16,9 @@ export function useScrollAnimation(
     const { top, bottom, height } = ref.current.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
 
-    // Check if any part of the element is visible
     const isVisible = top < viewportHeight && bottom > 0;
 
     if (isVisible) {
-      // If the element is visible, it should be fully opaque and in its final position.
       setStyle({
         opacity: 1,
         transform: 'translateY(0) translateX(0)',
@@ -28,7 +26,7 @@ export function useScrollAnimation(
         willChange: 'transform, opacity',
       });
     } else {
-      // Element is completely out of view. Determine if it's above or below.
+      // Determine if the element is above or below the viewport
       const isAbove = bottom < 0; // The bottom of the element is above the top of the viewport.
       
       let transform;
@@ -40,10 +38,10 @@ export function useScrollAnimation(
           transform = `translateY(${isAbove ? `-${verticalOffset}` : verticalOffset})`;
           break;
         case 'slideInFromLeft':
-          transform = `translateX(${isAbove ? `-${horizontalOffset}` : `-${horizontalOffset}`})`;
+           transform = `translateX(-${horizontalOffset})`;
           break;
         case 'slideInFromRight':
-          transform = `translateX(${isAbove ? horizontalOffset : horizontalOffset})`;
+          transform = `translateX(${horizontalOffset})`;
           break;
         default:
           transform = 'none';
