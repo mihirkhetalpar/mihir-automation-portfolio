@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh bg-background">
       <Header />
-      <main className="flex-1 overflow-x-hidden">
+      <main className="flex-1">
         <HeroSection />
         <AnimatedSection animationType="slideInFromLeft">
           <AutomationShowcaseSection />
