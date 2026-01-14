@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { HeroSection } from '@/components/sections/hero';
@@ -8,35 +11,37 @@ import { ExperienceSection } from '@/components/sections/experience';
 import { SkillsSection } from '@/components/sections/skills';
 import { CertificationSection } from '@/components/sections/certification';
 import { ContactSection } from '@/components/sections/contact';
-import { ScrollAnimator } from '@/components/shared/ScrollAnimator';
+import { AnimatedSection } from '@/components/shared/AnimatedSection';
 
 export default function Home() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
   return (
-    <div className="flex flex-col min-h-dvh bg-background">
+    <div ref={scrollContainerRef} className="flex flex-col min-h-dvh bg-background">
       <Header />
       <main className="flex-1 overflow-x-hidden">
         <HeroSection />
-        <ScrollAnimator animation="fade-in-up">
+        <AnimatedSection animationType="slideInFromLeft">
           <AutomationShowcaseSection />
-        </ScrollAnimator>
-        <ScrollAnimator animation="slide-in-left">
+        </AnimatedSection>
+        <AnimatedSection animationType="slideInFromRight">
           <TicketTriageSection />
-        </ScrollAnimator>
-        <ScrollAnimator animation="fade-in-up">
+        </AnimatedSection>
+        <AnimatedSection animationType="fadeInUp">
           <ServicesSection />
-        </ScrollAnimator>
-        <ScrollAnimator animation="slide-in-right">
+        </AnimatedSection>
+        <AnimatedSection animationType="slideInFromLeft">
           <ExperienceSection />
-        </ScrollAnimator>
-        <ScrollAnimator animation="fade-in-up">
+        </AnimatedSection>
+        <AnimatedSection animationType="fadeInUp">
           <SkillsSection />
-        </ScrollAnimator>
-        <ScrollAnimator animation="slide-in-left">
+        </AnimatedSection>
+        <AnimatedSection animationType="slideInFromRight">
           <CertificationSection />
-        </ScrollAnimator>
-        <ScrollAnimator animation="fade-in-up">
+        </AnimatedSection>
+        <AnimatedSection animationType="fadeInUp">
           <ContactSection />
-        </ScrollAnimator>
+        </AnimatedSection>
       </main>
       <Footer />
     </div>
