@@ -18,22 +18,22 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <HeroSection />
-        <AnimatedSection animationType="slide-in-left">
+        <AnimatedSection animationType="fade-in-up">
           <AutomationShowcaseSection />
         </AnimatedSection>
-        <AnimatedSection animationType="slide-in-right">
+        <AnimatedSection animationType="fade-in-up">
           <TicketTriageSection />
         </AnimatedSection>
         <AnimatedSection animationType="fade-in-up">
           <ServicesSection />
         </AnimatedSection>
-        <AnimatedSection animationType="slide-in-left">
+        <AnimatedSection animationType="fade-in-up">
           <ExperienceSection />
         </AnimatedSection>
         <AnimatedSection animationType="fade-in-up">
           <SkillsSection />
         </AnimatedSection>
-        <AnimatedSection animationType="slide-in-right">
+        <AnimatedSection animationType="fade-in-up">
           <CertificationSection />
         </AnimatedSection>
         <AnimatedSection animationType="fade-in-up">

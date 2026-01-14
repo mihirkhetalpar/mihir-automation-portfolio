@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useEffect, useRef, CSSProperties } from 'react';
+import { useEffect, useRef } from 'react';
 
 const isBrowser = typeof window !== 'undefined';
 
@@ -19,79 +20,44 @@ export function useScrollAnimation(config: AnimationConfig) {
     const rect = element.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-    const isVisible = rect.top < windowHeight && rect.bottom > 0;
+    // A buffer to start fading in a bit earlier and fade out a bit later
+    const buffer = windowHeight * 0.1;
 
-    let progress = 0;
-    if (isVisible) {
-      // Calculate progress from 0 (bottom of viewport) to 1 (top of viewport)
-      // This creates a smooth animation as it scrolls through the viewport
-      progress = (windowHeight - rect.top) / (windowHeight + rect.height);
-      progress = Math.max(0, Math.min(1, progress));
-    } else {
-      // When not visible, reset progress based on position
-      progress = rect.top > windowHeight ? 0 : 1;
-    }
-
-    // Apply styles based on progress
-    const opacity = isVisible ? Math.sin(progress * Math.PI) : 0;
+    // Check if any part of the element is within the buffered viewport
+    const isVisible = rect.top < windowHeight - buffer && rect.bottom > buffer;
     
-    let transform = 'none';
+    // Calculate progress: 0 when just entering viewport, 1 when fully visible
+    let progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+    progress = Math.max(0, Math.min(1, progress));
 
-    // Invert the progress for slide-out effect
-    const slideOutProgress = 1 - progress;
-
-    if (isVisible) {
-        switch (config.animationType) {
-            case 'slide-in-left':
-                transform = `translateX(${-50 * (1 - progress)}px)`;
-                break;
-            case 'slide-in-right':
-                transform = `translateX(${50 * (1 - progress)}px)`;
-                break;
-            case 'fade-in-up':
-                transform = `translateY(${30 * (1 - progress)}px)`;
-                break;
-        }
-    } else {
-        // Ensure elements are in their "out" position when not visible
-        switch (config.animationType) {
-            case 'slide-in-left':
-                transform = `translateX(-50px)`;
-                break;
-            case 'slide-in-right':
-                transform = `translateX(50px)`;
-                break;
-            case 'fade-in-up':
-                transform = `translateY(30px)`;
-                break;
-        }
-    }
-
+    const opacity = isVisible ? Math.sin(progress * Math.PI) * 0.9 + 0.1 : 0;
+    const translateY = (1 - progress) * 20;
 
     element.style.opacity = `${opacity}`;
-    element.style.transform = transform;
+    element.style.transform = `translateY(${translateY}px)`;
+
 
     // Parallax for background
     const parallaxBg = document.querySelector('.parallax-bg') as HTMLElement | null;
     if (parallaxBg) {
+      // Slow down the background scroll speed
       parallaxBg.style.transform = `translateY(${window.scrollY * 0.5}px)`;
     }
-
-    rafRef.current = requestAnimationFrame(animate);
   };
 
   useEffect(() => {
     if (!isBrowser) return;
 
     const onScroll = () => {
+      // Debounce with requestAnimationFrame
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
       rafRef.current = requestAnimationFrame(animate);
     };
 
-    // Initial call
-    animate();
+    // Initial animation call
+    onScroll();
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
@@ -103,7 +69,9 @@ export function useScrollAnimation(config: AnimationConfig) {
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [config.animationType]);
+    // Re-run effect if animationType changes, although in this case it's static
+  }, [config.animationType]); 
 
-  return { ref: elementRef, style: { opacity: 0 } as CSSProperties };
+  // Initialize with opacity 0 to prevent flash of unstyled content
+  return { ref: elementRef, style: { opacity: 0 } };
 }
