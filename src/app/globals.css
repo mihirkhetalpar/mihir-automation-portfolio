@@ -70,4 +70,43 @@
   .text-glow-accent {
     @apply drop-shadow-[0_0_8px_hsl(var(--accent)/0.7)];
   }
+
+  @property --glow-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes rotate-glow {
+    0% { --glow-angle: 0deg; }
+    100% { --glow-angle: 360deg; }
+  }
+
+  .animated-border-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .animated-border-glow::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    background: conic-gradient(from var(--glow-angle), hsl(var(--secondary)), hsl(var(--primary)), hsl(var(--secondary)));
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+  }
+
+  .animated-border-glow:hover::before {
+    animation: rotate-glow 2.5s linear infinite;
+    opacity: 1;
+  }
+
+  .animated-border-glow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit; /* Use the parent's border-radius */
+    background: hsl(var(--card));
+  }
 }
