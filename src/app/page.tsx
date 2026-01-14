@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { HeroSection } from '@/components/sections/hero';
@@ -14,10 +13,8 @@ import { ContactSection } from '@/components/sections/contact';
 import { AnimatedSection } from '@/components/shared/AnimatedSection';
 
 export default function Home() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
   return (
-    <div ref={scrollContainerRef} className="flex flex-col min-h-dvh bg-background">
+    <div className="flex flex-col min-h-dvh bg-background">
       <Header />
       <main className="flex-1 overflow-x-hidden">
         <HeroSection />
