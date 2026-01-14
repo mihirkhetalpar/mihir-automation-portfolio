@@ -14,7 +14,7 @@ import { AnimatedSection } from '@/components/shared/AnimatedSection';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-dvh bg-background overflow-x-hidden">
+    <div className="flex flex-col min-h-dvh bg-background">
       <Header />
       <main className="flex-1">
         <HeroSection />

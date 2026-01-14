@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import { cn } from '@/lib/utils';
 
-type AnimationType = 'fadeInUp' | 'slideInFromLeft' | 'slideInFromRight';
+type AnimationType = 'fade-in-up' | 'slide-in-left' | 'slide-in-right';
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -12,11 +13,14 @@ interface AnimatedSectionProps {
 }
 
 export function AnimatedSection({ children, animationType, className }: AnimatedSectionProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const style = useScrollAnimation(ref, animationType);
+  const { ref, style } = useScrollAnimation({ animationType });
 
   return (
-    <div ref={ref} style={style} className={className}>
+    <div
+      ref={ref}
+      style={style}
+      className={cn('transition-opacity duration-300', className)}
+    >
       {children}
     </div>
   );

@@ -55,8 +55,16 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image:
-      radial-gradient(ellipse 80% 80% at 50% -20%,rgba(120, 119, 198, 0.3), hsla(0, 0%, 100%, 0));
+  }
+
+  .parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(ellipse 80% 80% at 50% -20%,rgba(120, 119, 198, 0.3), hsla(0, 0%, 100%, 0));
+    z-index: -10;
   }
 }
 
@@ -108,39 +116,5 @@
     z-index: -1;
     border-radius: inherit; /* Use the parent's border-radius */
     background: hsl(var(--card));
-  }
-
-  /* Scroll Animations */
-  @keyframes fade-in-up {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes slide-in-left {
-    from { opacity: 0; transform: translateX(-30px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes slide-in-right {
-    from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  .scroll-animate {
-    transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-    opacity: 0;
-  }
-  
-  .scroll-animate.is-visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  .scroll-animate.direction-fade-in-up {
-    transform: translateY(20px);
-  }
-  .scroll-animate.direction-slide-in-left {
-    transform: translateX(-30px);
-  }
-  .scroll-animate.direction-slide-in-right {
-    transform: translateX(30px);
   }
 }

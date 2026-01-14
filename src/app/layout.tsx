@@ -32,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body className={cn("font-body antialiased", fontBody.variable, fontHeadline.variable)}>
+        <div className="parallax-bg" />
         {children}
         <Toaster />
       </body>
