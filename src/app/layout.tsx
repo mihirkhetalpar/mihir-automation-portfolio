@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
+  verification: {
+    google: '2mPzDZkCfa7taND3S14vjYiWwXGSztEM-p-lVdD8GjY',
+  },
 };
 
 export default function RootLayout({
