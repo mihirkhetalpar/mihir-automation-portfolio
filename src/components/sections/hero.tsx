@@ -21,7 +21,7 @@ export function HeroSection() {
             </a>
           </Button>
           <Button asChild size="lg" variant="outline" className="border-secondary/50 text-secondary hover:bg-secondary/10 hover:text-secondary">
-            <a href="#contact">
+            <a href="mailto:mihirkhetalpar111@gmail.com?subject=AI%20Automation%20Inquiry">
               Contact Me
             </a>
           </Button>

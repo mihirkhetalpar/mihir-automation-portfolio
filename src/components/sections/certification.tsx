@@ -24,7 +24,7 @@ export function CertificationSection() {
               <div className="mt-6 flex justify-center md:justify-start">
                 <Button asChild variant="outline" className="border-accent/50 text-accent hover:bg-accent/10 hover:text-accent">
                   <a 
-                    href="https://learn.microsoft.com/en-us/credentials/certifications/exams/pl-900/"
+                    href="https://learn.microsoft.com/api/credentials/share/en-us/MihirK-4249/D5564DCE23E301ED?sharingId=77ECA4ABE1D58494"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

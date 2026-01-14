@@ -40,9 +40,9 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <Button asChild size="sm" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">
-          <a href="#contact">
-            Book a Call
+        <Button asChild size="sm" variant="outline" className="border-secondary/50 text-secondary hover:bg-secondary/10 hover:text-secondary">
+          <a href="mailto:mihirkhetalpar111@gmail.com?subject=AI%20Automation%20Inquiry">
+            Contact Me
           </a>
         </Button>
       </div>

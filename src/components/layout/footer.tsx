@@ -12,7 +12,7 @@ export function Footer() {
         </p>
         <div className="flex items-center gap-4">
           <a 
-            href="https://www.linkedin.com/in/mihir-khetalpar/" 
+            href="https://www.linkedin.com/in/mihir-khetalpar-1303021b4/" 
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="Mihir Khetalpar's LinkedIn Profile"
