@@ -14,29 +14,29 @@ import { AnimatedSection } from '@/components/shared/AnimatedSection';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-dvh bg-background">
+    <div className="flex flex-col min-h-dvh bg-background overflow-x-hidden">
       <Header />
       <main className="flex-1">
         <HeroSection />
-        <AnimatedSection animationType="slideInFromLeft">
+        <AnimatedSection animationType="slide-in-left">
           <AutomationShowcaseSection />
         </AnimatedSection>
-        <AnimatedSection animationType="slideInFromRight">
+        <AnimatedSection animationType="slide-in-right">
           <TicketTriageSection />
         </AnimatedSection>
-        <AnimatedSection animationType="fadeInUp">
+        <AnimatedSection animationType="fade-in-up">
           <ServicesSection />
         </AnimatedSection>
-        <AnimatedSection animationType="slideInFromLeft">
+        <AnimatedSection animationType="slide-in-left">
           <ExperienceSection />
         </AnimatedSection>
-        <AnimatedSection animationType="fadeInUp">
+        <AnimatedSection animationType="fade-in-up">
           <SkillsSection />
         </AnimatedSection>
-        <AnimatedSection animationType="slideInFromRight">
+        <AnimatedSection animationType="slide-in-right">
           <CertificationSection />
         </AnimatedSection>
-        <AnimatedSection animationType="fadeInUp">
+        <AnimatedSection animationType="fade-in-up">
           <ContactSection />
         </AnimatedSection>
       </main>
