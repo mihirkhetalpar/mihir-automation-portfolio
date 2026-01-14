@@ -18,6 +18,10 @@ const fontHeadline = Space_Grotesk({
 export const metadata: Metadata = {
   title: 'Mihir Khetalpar - AI Automation Architect',
   description: 'Portfolio of Mihir Khetalpar, showcasing expertise in GenAI and Power Platform automations for enterprise IT operations.',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({
