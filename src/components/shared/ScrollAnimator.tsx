@@ -18,14 +18,13 @@ export function ScrollAnimator({ children, animation, className }: ScrollAnimato
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
+        // Update state to trigger animation based on whether the element is in view
+        setIsVisible(entry.isIntersecting);
       },
       {
         rootMargin: '0px',
-        threshold: 0.1
+        // Animate when 10% of the element is visible
+        threshold: 0.1 
       }
     );
 
@@ -45,8 +44,9 @@ export function ScrollAnimator({ children, animation, className }: ScrollAnimato
     <div
       ref={ref}
       className={cn(
-        'transition-opacity',
-        isVisible ? `animate-on-scroll animation-${animation}` : 'opacity-0',
+        'scroll-animate',
+        `direction-${animation}`,
+        { 'is-visible': isVisible },
         className
       )}
     >

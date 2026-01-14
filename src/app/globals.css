@@ -124,19 +124,23 @@
     to { opacity: 1; transform: translateX(0); }
   }
 
-  .animate-on-scroll {
-    animation-duration: 0.8s;
-    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-    animation-fill-mode: both;
+  .scroll-animate {
+    transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    opacity: 0;
+  }
+  
+  .scroll-animate.is-visible {
+    opacity: 1;
+    transform: none;
   }
 
-  .animation-fade-in-up {
-    animation-name: fade-in-up;
+  .scroll-animate.direction-fade-in-up {
+    transform: translateY(20px);
   }
-  .animation-slide-in-left {
-    animation-name: slide-in-left;
+  .scroll-animate.direction-slide-in-left {
+    transform: translateX(-30px);
   }
-  .animation-slide-in-right {
-    animation-name: slide-in-right;
+  .scroll-animate.direction-slide-in-right {
+    transform: translateX(30px);
   }
 }
